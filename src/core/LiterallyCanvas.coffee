@@ -163,18 +163,24 @@ module.exports = class LiterallyCanvas
       @isDragging = true
       @trigger("lc-pointerdown", {tool: @tool, x: p.x, y: p.y, rawX: x, rawY: y})
 
-  pointerMove: (x, y) ->
-    util.requestAnimationFrame () =>
-      p = @clientCoordsToDrawingCoords(x, y)
-      if @tool?.usesSimpleAPI
-        if @isDragging
-          @tool.continue p.x, p.y, this
-          @trigger("drawContinue", {tool: @tool})
+  moveHandler: (x, y) ->
+    p = @clientCoordsToDrawingCoords(x, y)
+    if @tool?.usesSimpleAPI
+      if @isDragging
+        @tool.continue p.x, p.y, this
+        @trigger("drawContinue", {tool: @tool})
+    else
+      if @isDragging
+        @trigger("lc-pointerdrag", {tool: @tool, x: p.x, y: p.y, rawX: x, rawY: y})
       else
-        if @isDragging
-          @trigger("lc-pointerdrag", {tool: @tool, x: p.x, y: p.y, rawX: x, rawY: y})
-        else
-          @trigger("lc-pointermove", {tool: @tool, x: p.x, y: p.y, rawX: x, rawY: y})
+        @trigger("lc-pointermove", {tool: @tool, x: p.x, y: p.y, rawX: x, rawY: y})
+
+  pointerMove: (x, y) ->
+    if @tool?.name == "Pencil"
+      @moveHandler(x,y)
+    else
+      util.requestAnimationFrame () =>
+        @moveHandler(x,y)
 
   pointerUp: (x, y) ->
     p = @clientCoordsToDrawingCoords(x, y)
