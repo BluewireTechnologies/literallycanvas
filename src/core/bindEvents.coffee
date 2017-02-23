@@ -36,8 +36,6 @@ module.exports = bindEvents = (lc, canvas, panWithKeyboard = false) ->
     document.removeEventListener 'mousemove', mouseMoveListener
     document.removeEventListener 'mouseup', mouseUpListener
 
-    canvas.addEventListener 'mousemove', mouseMoveListener
-
   canvas.addEventListener 'mousedown', (e) =>
     return if e.target.tagName.toLowerCase() != 'canvas'
 
