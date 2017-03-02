@@ -11,7 +11,11 @@ module.exports = class Pencil extends ToolWithStroke
 
   pendingPoints: []
 
+  raf: 0
+
   begin: (x, y, lc) ->
+    @raf = null
+    @pendingPoints = []
     @color = lc.getColor('primary')
     @currentShape = @makeShape()
     @currentShape.addPoint(@makePoint(x, y, lc))
