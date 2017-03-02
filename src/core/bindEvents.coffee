@@ -45,7 +45,6 @@ module.exports = bindEvents = (lc, canvas, panWithKeyboard = false) ->
     p = position(canvas, e)
     lc.pointerDown(p.left, p.top)
 
-    canvas.removeEventListener 'mousemove', mouseMoveListener
     document.addEventListener 'mousemove', mouseMoveListener
     document.addEventListener 'mouseup', mouseUpListener
 
