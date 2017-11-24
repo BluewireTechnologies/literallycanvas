@@ -1,3 +1,4 @@
+DOM = require './ReactDOMFactories-shim'
 React = require './React-shim'
 createReactClass = require '../reactGUI/createReactClass-shim'
 PureRenderMixin = require 'react-addons-pure-render-mixin'
@@ -30,7 +31,7 @@ ColorGrid = React.createFactory createReactClass
   displayName: 'ColorGrid'
   mixins: [PureRenderMixin]
   render: ->
-    {div} = React.DOM
+    {div} = DOM
     (div {},
       @props.rows.map((row, ix) =>
         return (div \
@@ -131,7 +132,7 @@ ColorWell = createReactClass
       @setColor(getHSLAString(hsla))
 
   render: ->
-    {div, label, br} = React.DOM
+    {div, label, br} = DOM
     (div \
       {
         className: classSet({
@@ -168,7 +169,7 @@ ColorWell = createReactClass
     )
 
   renderPicker: ->
-    {div, label, input} = React.DOM
+    {div, label, input} = DOM
     return null unless @state.isPickerVisible
 
     renderLabel = (text) =>

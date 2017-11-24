@@ -1,3 +1,4 @@
+DOM = require './ReactDOMFactories-shim'
 React = require './React-shim'
 createReactClass = require '../reactGUI/createReactClass-shim'
 {classSet} = require '../core/util'
@@ -17,7 +18,7 @@ createToolButton = (tool) ->
         # and explain here. --steve)
         @props.lc.setTool(tool)
     render: ->
-      {div, img} = React.DOM
+      {div, img} = DOM
       {imageURLPrefix, isSelected, onSelect} = @props
 
       className = classSet
