@@ -1,3 +1,4 @@
+DOM = require '../reactGUI/ReactDOMFactories-shim'
 React = require '../reactGUI/React-shim'
 createReactClass = require '../reactGUI/createReactClass-shim'
 {defineOptionsStyle} = require './optionsStyles'
@@ -16,7 +17,7 @@ defineOptionsStyle 'line-options-and-stroke-width', createReactClass
   mixins: [createSetStateOnEventMixin('toolChange')]
 
   render: ->
-    {div, ul, li, img} = React.DOM
+    {div, ul, li, img} = DOM
     toggleIsDashed = =>
       @props.tool.isDashed = !@props.tool.isDashed
       @setState @getState()

@@ -1,3 +1,4 @@
+DOM = require '../reactGUI/ReactDOMFactories-shim'
 React = require '../reactGUI/React-shim'
 createReactClass = require '../reactGUI/createReactClass-shim'
 {defineOptionsStyle} = require './optionsStyles'
@@ -33,7 +34,7 @@ defineOptionsStyle 'polygon-and-stroke-width', createReactClass
 
   render: ->
     lc = @props.lc
-    {div, img} = React.DOM
+    {div, img} = DOM
 
     polygonFinishOpen = () =>
       lc.trigger 'lc-polygon-finishopen'
